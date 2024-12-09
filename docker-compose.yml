@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+
+# Correr docker
+# docker-compose up --build
+
+# Acceder consola
+# docker-compose exec app /bin/bash || docker-compose exec app /bin/sh
+
+# Detener Docker y eliminar contenedores, redes y volúmenes
+# docker-compose down --volumes
+
+# Detener docker
+# docker-compose stop
+
+# Iniciar docker
+# docker-compose start
+
+# Para documentación swagger
+# http://127.0.0.1:8080/docs
