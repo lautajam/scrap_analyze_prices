@@ -1,10 +1,35 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./models:/app/models
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  crud_product:
+    build:
+      context: .
+      dockerfile: crud_product/Dockerfile
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./crud_product:/app/crud_product
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  crud_store:
+    build:
+      context: .
+      dockerfile: crud_store/Dockerfile
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./crud_store:/app/crud_store
     environment:
       - PYTHONUNBUFFERED=1
 
@@ -15,7 +40,7 @@ services:
 # docker-compose exec app /bin/bash || docker-compose exec app /bin/sh
 
 # Detener Docker y eliminar contenedores, redes y volúmenes
-# docker-compose down --volumes
+# docker-compose down --rmi all --volumes --remove-orphans
 
 # Detener docker
 # docker-compose stop
